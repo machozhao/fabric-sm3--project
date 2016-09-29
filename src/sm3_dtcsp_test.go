@@ -20,7 +20,7 @@ func TestSM3_DTCSP_Hash_1(t *testing.T) {
 	var buffer [3]byte
 	copy(buffer[:], msg)
 
-	hw := NewSM3()
+	hw := NewSM3_DTCSP()
 	hw.Write(nil)
 
 	uhash := hw.Sum(buffer[:])
@@ -37,7 +37,7 @@ func TestSM3_DTCSP_Hash_2(t *testing.T) {
 	msg := "1"
 	buffer := []byte(msg)
 
-	hw := NewSM3()
+	hw := NewSM3_DTCSP()
 	hw.Write(nil)
 
 	uhash := hw.Sum(buffer[:])
@@ -54,7 +54,7 @@ func TestSM3_DTCSP_Hash_3(t *testing.T) {
 	msg := "a"
 	buffer := []byte(msg)
 
-	hw := NewSM3()
+	hw := NewSM3_DTCSP()
 	hw.Write(nil)
 
 	uhash := hw.Sum(buffer[:])
@@ -73,7 +73,7 @@ func TestSM3_DTCSP_Hash_4(t *testing.T) {
 	msg := "abcdefghijklmn"
 	buffer := []byte(msg)
 
-	hw := NewSM3()
+	hw := NewSM3_DTCSP()
 	hw.Write(nil)
 
 	uhash := hw.Sum(buffer[:])
@@ -91,7 +91,7 @@ func TestSM3_DTCSP_Hash_5(t *testing.T) {
 	msg := "abcdefghijklmnabcdefghijklmn"
 	buffer := []byte(msg)
 
-	hw := NewSM3()
+	hw := NewSM3_DTCSP()
 	hw.Write(buffer[:])
 
 	uhash := hw.Sum(buffer[:])
