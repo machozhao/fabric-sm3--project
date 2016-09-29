@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;fabric-sm3--project&gt;">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Documents/IBM_Blockchain/Projects/src/github.com" />
+      <root url="file://$USER_HOME$/Documents/IBM_Blockchain/Projects/src/golang.org" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Documents/IBM_Blockchain/Projects/src/github.com" />
+      <root url="file://$USER_HOME$/Documents/IBM_Blockchain/Projects/src/golang.org" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>
