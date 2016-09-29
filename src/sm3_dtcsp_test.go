@@ -107,3 +107,8 @@ func TestSM3_stress(t *testing.T) {
 		TestSM3_DTCSP_Hash_5(t)
 	}
 }
+
+
+
+
+
