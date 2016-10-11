@@ -102,8 +102,8 @@ func TestSM3_DTCSP_Hash_5(t *testing.T) {
 	}
 }
 
-func TestSM3_stress(t *testing.T) {
-	for i := 0; i < 1000000; i++ {
+func TestSM3_DTCSP_stress(t *testing.T) {
+	for i := 0; i < 10000; i++ {
 		TestSM3_DTCSP_Hash_5(t)
 	}
 }

@@ -70,7 +70,7 @@ func (sm3 *SM3_DTCSP) Size() int {
 // It never returns an error.
 func (sm3 *SM3_DTCSP) Write(pInData []byte) (int, error) {
 	if pInData != nil {
-		const sizeOfBuf = 1
+		const sizeOfBuf = 64
 		var pInDataBuf [sizeOfBuf]byte
 		var begin int
 		var end int
