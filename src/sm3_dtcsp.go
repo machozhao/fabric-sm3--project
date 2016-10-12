@@ -70,30 +70,12 @@ func (sm3 *SM3_DTCSP) Size() int {
 // It never returns an error.
 func (sm3 *SM3_DTCSP) Write(pInData []byte) (int, error) {
 	if pInData != nil {
-		const sizeOfBuf = 64
-		var pInDataBuf [sizeOfBuf]byte
-		var begin int
-		var end int
-		var total = len(pInData)
-		for begin = 0;begin < len(pInData); {
-			end += sizeOfBuf
-			if end > total {
-				end = total;
-			}
-			// Update hash
-			for i:= begin; i < end; i++ {
-				pInDataBuf[i - begin] = pInData[i]
-			}
-			//fmt.Println("Before update, in data: ", )
-			//fmt.Println("Before update, sm3 context: ", sm3.sm3Context)
-			//fmt.Println("Before update, in uchar: ", (C.DTCSP_INT32)(len(pInData)))
-			rvu := C.DTCSP_SM3_Ex_Update(nil, &sm3.sm3Context, (*C.DTCSP_UCHAR)(unsafe.Pointer(&pInDataBuf)), (C.DTCSP_INT32)(end - begin));
-			//fmt.Println("After  update, sm3 context: ", sm3.sm3Context)
-			if rvu != 0 {
-				return int(rvu), errors.New("DTCSP_SM3_Ex_Update Error");
-			}
-			begin = end;
+		rvu := C.DTCSP_SM3_Ex_Update(nil, &sm3.sm3Context, (*C.DTCSP_UCHAR)(unsafe.Pointer(&pInData[0])), (C.DTCSP_INT32)(len(pInData)));
+		//fmt.Println("After  update, sm3 context: ", sm3.sm3Context)
+		if rvu != 0 {
+			return int(rvu), errors.New("DTCSP_SM3_Ex_Update Error");
 		}
+		return 0, nil
 	}
 	return 0, nil
 }
