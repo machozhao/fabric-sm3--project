@@ -24,15 +24,21 @@ type SM3_KMP struct {
 
 type Void interface{}
 
+// http://stackoverflow.com/questions/35673161/convert-go-byte-to-a-c-char
+
 func NewSM3_KMP() hash.Hash {
-	kmpConfigFile := "kmp.ini"
-	sm3 := &SM3_KMP{}
+	kmpConfigFile := []byte("/home/ibm/IdeaProjects/fabric-sm3--project/kmp/kmp.ini")
+	fmt.Println("KMP config file: ", kmpConfigFile)
+
+	sm3 := &SM3_KMP{sm3Context:nil}
 
 	// Init DTCSP
 	//sm3.sm3Context = unsafe.Pointer
 	fmt.Println("Before init, sm3 context: ", sm3.sm3Context)
-	var dat unsafe.Pointer
-	rv := C.KMP_Initialize(&dat, 1, (*C.uchar)(unsafe.Pointer(&kmpConfigFile)))
+	//var dat unsafe.Pointer
+	sm3.sm3Context = C.malloc(C.size_t(unsafe.Sizeof(sm3.sm3Context)))
+	fmt.Println("Before init, sm3 context: ", &sm3.sm3Context)
+	rv := C.KMP_Initialize(&sm3.sm3Context, 1, (*C.uchar)(unsafe.Pointer(&kmpConfigFile[0])))
 	if rv != 0 {
 		fmt.Printf("KMP_Initialize Error, ret: ", rv);
 		return nil;
